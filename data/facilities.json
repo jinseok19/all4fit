@@ -1,0 +1,177 @@
+[
+  {
+    "id": "facility-1",
+    "name": "서울 종합체육관",
+    "type": "gymnasium",
+    "category": "체육관",
+    "location": {
+      "address": "서울특별시 송파구 올림픽로 424",
+      "district": "송파구",
+      "latitude": 37.5145,
+      "longitude": 127.1021
+    },
+    "facilities": ["농구장", "배구장", "배드민턴장", "탁구장", "헬스장"],
+    "capacity": 150,
+    "status": "active",
+    "operatingHours": {
+      "weekday": "06:00-22:00",
+      "weekend": "06:00-20:00"
+    },
+    "contact": {
+      "phone": "02-1234-5678",
+      "email": "info@seoulgymnasium.co.kr"
+    },
+    "fees": {
+      "hourly": 50000,
+      "daily": 300000,
+      "monthly": 1200000
+    },
+    "amenities": ["주차장", "샤워실", "라커", "매점"],
+    "images": ["/images/facility-1-1.jpg", "/images/facility-1-2.jpg"],
+    "description": "서울 올림픽공원 내 위치한 대규모 종합체육관으로 다양한 스포츠 활동이 가능합니다.",
+    "rating": 4.5,
+    "reviewCount": 128,
+    "createdAt": "2024-01-15",
+    "updatedAt": "2024-12-10"
+  },
+  {
+    "id": "facility-2",
+    "name": "강남 스포츠센터",
+    "type": "sports_center",
+    "category": "스포츠센터",
+    "location": {
+      "address": "서울특별시 강남구 테헤란로 123",
+      "district": "강남구",
+      "latitude": 37.5015,
+      "longitude": 127.0391
+    },
+    "facilities": ["수영장", "헬스장", "요가실", "필라테스실", "스쿼시장"],
+    "capacity": 200,
+    "status": "active",
+    "operatingHours": {
+      "weekday": "05:00-23:00",
+      "weekend": "07:00-22:00"
+    },
+    "contact": {
+      "phone": "02-2345-6789",
+      "email": "contact@gangnamsc.co.kr"
+    },
+    "fees": {
+      "hourly": 30000,
+      "daily": 150000,
+      "monthly": 800000
+    },
+    "amenities": ["주차장", "사우나", "샤워실", "라커", "카페", "키즈룸"],
+    "images": ["/images/facility-2-1.jpg", "/images/facility-2-2.jpg"],
+    "description": "강남 중심가에 위치한 프리미엄 스포츠센터로 최신 시설을 갖추고 있습니다.",
+    "rating": 4.7,
+    "reviewCount": 256,
+    "createdAt": "2024-02-20",
+    "updatedAt": "2024-12-09"
+  },
+  {
+    "id": "facility-3",
+    "name": "마포 수영장",
+    "type": "swimming_pool",
+    "category": "수영장",
+    "location": {
+      "address": "서울특별시 마포구 월드컵로 456",
+      "district": "마포구",
+      "latitude": 37.5665,
+      "longitude": 126.9016
+    },
+    "facilities": ["실내수영장", "키즈풀", "사우나"],
+    "capacity": 80,
+    "status": "active",
+    "operatingHours": {
+      "weekday": "06:00-22:00",
+      "weekend": "06:00-20:00"
+    },
+    "contact": {
+      "phone": "02-3456-7890",
+      "email": "info@mapopool.co.kr"
+    },
+    "fees": {
+      "hourly": 15000,
+      "daily": 50000,
+      "monthly": 400000
+    },
+    "amenities": ["주차장", "샤워실", "라커", "휴게실"],
+    "images": ["/images/facility-3-1.jpg"],
+    "description": "마포구 대표 수영장으로 깨끗하고 안전한 시설을 제공합니다.",
+    "rating": 4.2,
+    "reviewCount": 89,
+    "createdAt": "2024-03-10",
+    "updatedAt": "2024-12-08"
+  },
+  {
+    "id": "facility-4",
+    "name": "용산 테니스장",
+    "type": "tennis_court",
+    "category": "테니스장",
+    "location": {
+      "address": "서울특별시 용산구 이태원로 789",
+      "district": "용산구",
+      "latitude": 37.5345,
+      "longitude": 126.9944
+    },
+    "facilities": ["실외테니스코트 6면", "실내테니스코트 2면"],
+    "capacity": 64,
+    "status": "active",
+    "operatingHours": {
+      "weekday": "06:00-22:00",
+      "weekend": "06:00-20:00"
+    },
+    "contact": {
+      "phone": "02-4567-8901",
+      "email": "booking@yongsantennis.co.kr"
+    },
+    "fees": {
+      "hourly": 25000,
+      "daily": 120000,
+      "monthly": 600000
+    },
+    "amenities": ["주차장", "샤워실", "프로샵", "레스토랑"],
+    "images": ["/images/facility-4-1.jpg", "/images/facility-4-2.jpg"],
+    "description": "용산공원 인근의 쾌적한 환경에서 테니스를 즐길 수 있는 전문 테니스장입니다.",
+    "rating": 4.4,
+    "reviewCount": 67,
+    "createdAt": "2024-04-05",
+    "updatedAt": "2024-12-07"
+  },
+  {
+    "id": "facility-5",
+    "name": "성동 축구장",
+    "type": "soccer_field",
+    "category": "축구장",
+    "location": {
+      "address": "서울특별시 성동구 뚝섬로 321",
+      "district": "성동구",
+      "latitude": 37.5445,
+      "longitude": 127.0391
+    },
+    "facilities": ["천연잔디 축구장 2면", "인조잔디 축구장 1면"],
+    "capacity": 120,
+    "status": "active",
+    "operatingHours": {
+      "weekday": "06:00-22:00",
+      "weekend": "06:00-20:00"
+    },
+    "contact": {
+      "phone": "02-5678-9012",
+      "email": "field@seongdongsoccer.co.kr"
+    },
+    "fees": {
+      "hourly": 80000,
+      "daily": 400000,
+      "monthly": 1500000
+    },
+    "amenities": ["주차장", "샤워실", "라커", "관중석", "조명시설"],
+    "images": ["/images/facility-5-1.jpg"],
+    "description": "한강변 위치한 프리미엄 축구장으로 아마추어부터 프로팀까지 이용 가능합니다.",
+    "rating": 4.6,
+    "reviewCount": 145,
+    "createdAt": "2024-05-12",
+    "updatedAt": "2024-12-06"
+  }
+]

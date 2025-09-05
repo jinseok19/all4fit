@@ -1,0 +1,224 @@
+[
+  {
+    "id": "coach-1",
+    "name": "김수영",
+    "specialties": ["수영", "아쿠아로빅"],
+    "experience": 8,
+    "qualifications": [
+      "생활체육지도자 2급 (수영)",
+      "수상안전요원 자격증",
+      "대한수영연맹 공인지도자"
+    ],
+    "education": "서울체육대학교 체육학과",
+    "bio": "15년간 수영 지도 경험을 바탕으로 초보자부터 선수까지 다양한 수준의 수영 교육을 진행하고 있습니다. 안전하고 체계적인 수영 지도로 많은 수강생들의 사랑을 받고 있습니다.",
+    "achievements": [
+      "2023년 우수 지도자상 수상",
+      "전국수영대회 지도자 참여 20회",
+      "수영 강습생 1000명 이상 지도"
+    ],
+    "rating": 4.8,
+    "reviewCount": 156,
+    "profileImage": "/images/coach-1.jpg",
+    "contact": {
+      "phone": "010-1234-5678",
+      "email": "coach.kim@allfit.kr"
+    },
+    "availableTimes": [
+      { "day": "월", "times": ["09:00-12:00", "19:00-21:00"] },
+      { "day": "수", "times": ["09:00-12:00", "19:00-21:00"] },
+      { "day": "금", "times": ["09:00-12:00", "19:00-21:00"] },
+      { "day": "토", "times": ["10:00-16:00"] }
+    ],
+    "hourlyRate": 80000,
+    "status": "active",
+    "languages": ["한국어", "영어"],
+    "createdAt": "2024-01-10",
+    "updatedAt": "2024-12-10"
+  },
+  {
+    "id": "coach-2",
+    "name": "박요가",
+    "specialties": ["요가", "필라테스", "스트레칭"],
+    "experience": 12,
+    "qualifications": [
+      "RYT-200 요가지도자",
+      "필라테스 매트 지도자",
+      "재활운동 전문가 자격증"
+    ],
+    "education": "국민대학교 체육학과, 인도 리시케시 요가 연수",
+    "bio": "인도에서 전통 요가를 배워 국내에 도입한 요가 전문가입니다. 몸과 마음의 균형을 중시하는 홀리스틱 요가 철학을 바탕으로 수업을 진행합니다.",
+    "achievements": [
+      "요가 전문 서적 3권 출간",
+      "2022년 올해의 요가 강사상 수상",
+      "요가 지도자 양성 과정 운영"
+    ],
+    "rating": 4.9,
+    "reviewCount": 203,
+    "profileImage": "/images/coach-2.jpg",
+    "contact": {
+      "phone": "010-2345-6789",
+      "email": "coach.park@allfit.kr"
+    },
+    "availableTimes": [
+      { "day": "화", "times": ["07:00-09:00", "18:00-20:00"] },
+      { "day": "목", "times": ["07:00-09:00", "18:00-20:00"] },
+      { "day": "토", "times": ["08:00-12:00"] },
+      { "day": "일", "times": ["08:00-12:00"] }
+    ],
+    "hourlyRate": 90000,
+    "status": "active",
+    "languages": ["한국어", "영어", "산스크리트어"],
+    "createdAt": "2024-02-05",
+    "updatedAt": "2024-12-09"
+  },
+  {
+    "id": "coach-3",
+    "name": "이테니스",
+    "specialties": ["테니스", "배드민턴"],
+    "experience": 15,
+    "qualifications": [
+      "ITF 국제테니스연맹 공인코치",
+      "대한테니스협회 1급 지도자",
+      "스포츠심리상담사"
+    ],
+    "education": "연세대학교 체육학과, 미국 USPTA 연수",
+    "bio": "프로 테니스 선수 출신으로 현역 시절 국내외 대회에서 다수의 우승 경력을 보유하고 있습니다. 현재는 후진 양성에 매진하며 개인 맞춤형 테니스 레슨을 전문으로 하고 있습니다.",
+    "achievements": [
+      "전국체전 테니스 금메달 3회",
+      "아시안게임 테니스 국가대표",
+      "프로 테니스 랭킹 최고 50위",
+      "지도 선수 프로 진출 5명"
+    ],
+    "rating": 4.9,
+    "reviewCount": 89,
+    "profileImage": "/images/coach-3.jpg",
+    "contact": {
+      "phone": "010-3456-7890",
+      "email": "coach.lee@allfit.kr"
+    },
+    "availableTimes": [
+      { "day": "월", "times": ["14:00-18:00"] },
+      { "day": "화", "times": ["14:00-18:00"] },
+      { "day": "수", "times": ["14:00-18:00"] },
+      { "day": "목", "times": ["14:00-18:00"] },
+      { "day": "금", "times": ["14:00-18:00"] },
+      { "day": "토", "times": ["09:00-17:00"] },
+      { "day": "일", "times": ["09:00-17:00"] }
+    ],
+    "hourlyRate": 120000,
+    "status": "active",
+    "languages": ["한국어", "영어"],
+    "createdAt": "2024-03-12",
+    "updatedAt": "2024-12-08"
+  },
+  {
+    "id": "coach-4",
+    "name": "정축구",
+    "specialties": ["축구", "풋살"],
+    "experience": 10,
+    "qualifications": [
+      "AFC A급 지도자 라이센스",
+      "대한축구협회 공인지도자",
+      "스포츠 상해 예방 전문가"
+    ],
+    "education": "한국체육대학교 축구학과, 독일 분데스리가 연수",
+    "bio": "K리그에서 활약한 전 프로 축구선수로 현재는 아마추어부터 유소년까지 다양한 연령층의 축구 지도를 담당하고 있습니다. 유럽식 축구 철학과 한국적 정서를 조화시킨 독특한 지도법으로 유명합니다.",
+    "achievements": [
+      "K리그 클래식 100경기 출장",
+      "아시아축구연맹컵 참가",
+      "유소년 축구클럽 창단 및 운영",
+      "지역 축구 발전 공로상 수상"
+    ],
+    "rating": 4.6,
+    "reviewCount": 127,
+    "profileImage": "/images/coach-4.jpg",
+    "contact": {
+      "phone": "010-4567-8901",
+      "email": "coach.jung@allfit.kr"
+    },
+    "availableTimes": [
+      { "day": "토", "times": ["09:00-17:00"] },
+      { "day": "일", "times": ["09:00-17:00"] },
+      { "day": "평일", "times": ["19:00-21:00"] }
+    ],
+    "hourlyRate": 100000,
+    "status": "active",
+    "languages": ["한국어", "영어", "독일어"],
+    "createdAt": "2024-04-18",
+    "updatedAt": "2024-12-07"
+  },
+  {
+    "id": "coach-5",
+    "name": "최헬스",
+    "specialties": ["헬스", "재활운동", "시니어운동"],
+    "experience": 7,
+    "qualifications": [
+      "생활체육지도자 1급 (보디빌딩)",
+      "운동처방사",
+      "노인체육지도자",
+      "재활운동 전문가"
+    ],
+    "education": "고려대학교 체육교육학과, 운동처방학 석사",
+    "bio": "시니어 전문 운동지도자로 50세 이상의 중장년층과 노인분들의 건강한 노후를 위한 맞춤형 운동 프로그램을 제공합니다. 안전하고 효과적인 운동 지도에 특화되어 있습니다.",
+    "achievements": [
+      "시니어 운동 프로그램 개발",
+      "건강 관련 논문 5편 발표",
+      "노인 체육 우수강사상 수상",
+      "시니어 운동 지도서 출간"
+    ],
+    "rating": 4.8,
+    "reviewCount": 94,
+    "profileImage": "/images/coach-5.jpg",
+    "contact": {
+      "phone": "010-5678-9012",
+      "email": "coach.choi@allfit.kr"
+    },
+    "availableTimes": [
+      { "day": "월", "times": ["09:00-12:00", "14:00-17:00"] },
+      { "day": "수", "times": ["09:00-12:00", "14:00-17:00"] },
+      { "day": "금", "times": ["09:00-12:00", "14:00-17:00"] }
+    ],
+    "hourlyRate": 85000,
+    "status": "active",
+    "languages": ["한국어"],
+    "createdAt": "2024-05-22",
+    "updatedAt": "2024-12-06"
+  },
+  {
+    "id": "coach-6",
+    "name": "한농구",
+    "specialties": ["농구", "방과후체육"],
+    "experience": 9,
+    "qualifications": [
+      "KBL 공인지도자",
+      "생활체육지도자 2급 (농구)",
+      "유소년체육지도자",
+      "스포츠심리지도자"
+    ],
+    "education": "중앙대학교 체육학과, 아동체육학 전공",
+    "bio": "어린이와 청소년 농구 전문 지도자로 재미있고 체계적인 농구 교육을 통해 아이들의 건강한 성장을 돕고 있습니다. 개인기 향상과 함께 팀워크의 중요성을 가르치는 교육 철학을 가지고 있습니다.",
+    "achievements": [
+      "전국 유소년 농구대회 우승팀 지도",
+      "방과후 체육활동 우수강사상",
+      "어린이 농구교실 운영 5년",
+      "청소년 농구클럽 창단"
+    ],
+    "rating": 4.7,
+    "reviewCount": 112,
+    "profileImage": "/images/coach-6.jpg",
+    "contact": {
+      "phone": "010-6789-0123",
+      "email": "coach.han@allfit.kr"
+    },
+    "availableTimes": [
+      { "day": "토", "times": ["13:00-18:00"] },
+      { "day": "일", "times": ["13:00-18:00"] },
+      { "day": "평일", "times": ["16:00-19:00"] }
+    ],
+    "hourlyRate": 75000,
+    "status": "active",
+    "languages": ["한국어", "영어"],
+    "createdAt": "2024-06-15",
+    "updatedAt": "2024-12-05"
+  }
+]

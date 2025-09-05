@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시설 상세 정보 | 모두의핏</title>
+  <meta name="description" content="체육시설 상세 정보를 확인하고 예약하세요.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"></noscript>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  
+  <header id="site-header"></header>
+  <div class="breadcrumb" id="breadcrumb"></div>
+  
+  <main id="main">
+    <div class="detail-container" id="detailContainer">
+      <!-- 동적으로 로드됩니다 -->
+    </div>
+  </main>
+  
+  <footer id="site-footer"></footer>
+
+  <script type="module" defer>
+    import { mountHeader, mountFooter, mountBreadcrumb } from '/components/layout.js';
+    import { FacilityDetailManager } from '/js/detail.js';
+    
+    // 레이아웃 마운트
+    mountHeader(document.getElementById('site-header'), { activePath: '/facilities/' });
+    mountBreadcrumb(document.getElementById('breadcrumb'), [
+      { label: '홈', href: '/' }, 
+      { label: '체육시설', href: '/facilities/' },
+      { label: '상세정보' }
+    ]);
+    mountFooter(document.getElementById('site-footer'));
+
+    // 상세 페이지 초기화
+    new FacilityDetailManager(document.getElementById('detailContainer'));
+  </script>
+</body>
+</html>

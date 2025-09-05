@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# 관리자 페이지 및 개인정보 관련 페이지 제외
+Disallow: /admin/
+Disallow: /login.html
+Disallow: /policy/
+
+# 중요 페이지
+Allow: /
+Allow: /facilities/
+Allow: /programs/
+Allow: /coaches/
+Allow: /voucher/
+Allow: /support/
+Allow: /about/
+
+# 리소스 파일들
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /data/
+
+# 사이트맵
+Sitemap: https://allfit.nexuscore.co.kr/sitemap.xml

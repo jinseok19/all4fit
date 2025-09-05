@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>체육시설 | 모두의핏</title>
+  <meta name="description" content="최고의 체육시설에서 운동하세요. 헬스장, 수영장, 테니스장, 농구장 등 다양한 시설을 합리적인 가격에 이용하실 수 있습니다.">
+  <meta name="keywords" content="체육시설, 헬스장, 수영장, 테니스장, 농구장, 스포츠센터, 시설예약">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="체육시설 | 모두의핏">
+  <meta property="og:description" content="최고의 체육시설에서 운동하세요">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://allfit.nexuscore.co.kr/facilities/">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"></noscript>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://allfit.nexuscore.co.kr/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "체육시설",
+        "item": "https://allfit.nexuscore.co.kr/facilities/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  
+  <header id="site-header"></header>
+  <div class="breadcrumb" id="breadcrumb"></div>
+  
+  <main id="main">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">체육시설</h1>
+        <p class="page-description">
+          최신 장비와 쾌적한 환경을 갖춘 다양한 체육시설에서<br>
+          건강하고 즐거운 운동을 경험하세요
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- 필터 및 검색 -->
+      <div class="filters-section">
+        <form class="filters" id="filtersForm">
+          <div class="filter-group">
+            <label class="filter-label">시설 유형</label>
+            <select name="type" class="filter-select">
+              <option value="">전체</option>
+              <option value="gymnasium">체육관</option>
+              <option value="sports_center">스포츠센터</option>
+              <option value="swimming_pool">수영장</option>
+              <option value="tennis_court">테니스장</option>
+              <option value="soccer_field">축구장</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">지역</label>
+            <select name="location.district" class="filter-select">
+              <option value="">전체</option>
+              <option value="강남구">강남구</option>
+              <option value="마포구">마포구</option>
+              <option value="송파구">송파구</option>
+              <option value="용산구">용산구</option>
+              <option value="성동구">성동구</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">가격대</label>
+            <select name="priceRange" class="filter-select">
+              <option value="">전체</option>
+              <option value="low">10만원 이하</option>
+              <option value="medium">10-50만원</option>
+              <option value="high">50만원 이상</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">정렬</label>
+            <select name="sortBy" class="filter-select" id="sortSelect">
+              <option value="rating">평점 높은순</option>
+              <option value="reviewCount">리뷰 많은순</option>
+              <option value="hourly">가격 낮은순</option>
+              <option value="name">이름순</option>
+              <option value="createdAt">최신순</option>
+            </select>
+          </div>
+          
+          <div class="filter-group search-group">
+            <label class="filter-label">검색</label>
+            <div class="search-wrapper">
+              <input 
+                type="search" 
+                name="search" 
+                class="search-input" 
+                placeholder="시설명, 지역, 시설종류로 검색..."
+                aria-label="체육시설 검색"
+              >
+              <button type="button" class="search-clear" aria-label="검색어 지우기" style="display: none;">&times;</button>
+            </div>
+          </div>
+        </form>
+        
+        <div class="view-controls">
+          <div class="results-info" id="resultsInfo"></div>
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid" aria-label="격자 보기">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+              </svg>
+            </button>
+            <button class="view-btn" data-view="list" aria-label="목록 보기">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="8" y1="6" x2="21" y2="6"/>
+                <line x1="8" y1="12" x2="21" y2="12"/>
+                <line x1="8" y1="18" x2="21" y2="18"/>
+                <line x1="3" y1="6" x2="3.01" y2="6"/>
+                <line x1="3" y1="12" x2="3.01" y2="12"/>
+                <line x1="3" y1="18" x2="3.01" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 결과 목록 -->
+      <div class="list-container" id="facilitiesList">
+        <!-- 동적으로 로드됩니다 -->
+      </div>
+
+      <!-- 페이지네이션 -->
+      <div class="pagination-container" id="paginationContainer"></div>
+    </div>
+  </main>
+  
+  <footer id="site-footer"></footer>
+
+  <script type="module" defer>
+    import { mountHeader, mountFooter, mountBreadcrumb } from '/components/layout.js';
+    import { FacilitiesListManager } from '/js/list.js';
+    import UIComponents from '/js/ui.js';
+    
+    // 레이아웃 마운트
+    mountHeader(document.getElementById('site-header'), { activePath: '/facilities/' });
+    mountBreadcrumb(document.getElementById('breadcrumb'), [
+      { label: '홈', href: '/' }, 
+      { label: '체육시설' }
+    ]);
+    mountFooter(document.getElementById('site-footer'));
+
+    // 시설 목록 페이지 관리자
+    class FacilitiesPage extends FacilitiesListManager {
+      constructor() {
+        super(document.getElementById('main'));
+        this.setupAdditionalFeatures();
+      }
+
+      setupAdditionalFeatures() {
+        this.setupViewToggle();
+        this.setupSearchClear();
+        this.setupItemClick((facilityId) => {
+          window.location.href = `/facilities/detail.html?id=${facilityId}`;
+        });
+      }
+
+      setupViewToggle() {
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const listContainer = document.getElementById('facilitiesList');
+        
+        viewBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            viewBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const view = btn.dataset.view;
+            listContainer.className = `list-container view-${view}`;
+            
+            // 현재 뷰를 localStorage에 저장
+            localStorage.setItem('facilities_view', view);
+          });
+        });
+
+        // 저장된 뷰 복원
+        const savedView = localStorage.getItem('facilities_view') || 'grid';
+        const targetBtn = document.querySelector(`[data-view="${savedView}"]`);
+        if (targetBtn) {
+          targetBtn.click();
+        }
+      }
+
+      setupSearchClear() {
+        const searchInput = document.querySelector('.search-input');
+        const clearBtn = document.querySelector('.search-clear');
+        
+        searchInput.addEventListener('input', () => {
+          clearBtn.style.display = searchInput.value ? 'block' : 'none';
+        });
+        
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          clearBtn.style.display = 'none';
+          searchInput.focus();
+          // 검색 초기화 이벤트 트리거
+          searchInput.dispatchEvent(new Event('input'));
+        });
+      }
+
+      renderList(container, facilities) {
+        if (facilities.length === 0) {
+          UIComponents.showEmpty(container, '조건에 맞는 체육시설이 없습니다.');
+          return;
+        }
+
+        const view = localStorage.getItem('facilities_view') || 'grid';
+        
+        container.innerHTML = `
+          <div class="facilities-${view}">
+            ${facilities.map(facility => this.renderItem(facility, view)).join('')}
+          </div>
+        `;
+
+        // 결과 정보 업데이트
+        document.getElementById('resultsInfo').textContent = 
+          `총 ${facilities.length}개의 체육시설`;
+      }
+
+      renderItem(facility, view = 'grid') {
+        const spotsStatus = facility.capacity > 100 ? '여유' : facility.capacity > 50 ? '보통' : '마감임박';
+        const statusColor = facility.capacity > 100 ? 'good' : facility.capacity > 50 ? 'warn' : 'bad';
+
+        if (view === 'list') {
+          return `
+            <div class="facility-item list-item" data-id="${facility.id}">
+              <div class="item-image">
+                <img src="${facility.images[0] || '/images/placeholder-facility.jpg'}" 
+                     alt="${facility.name}" loading="lazy">
+              </div>
+              <div class="item-content">
+                <div class="item-header">
+                  <h3 class="item-title">${facility.name}</h3>
+                  <div class="item-badges">
+                    <span class="badge">${facility.category}</span>
+                    <span class="status status-${facility.status}">
+                      <span class="status-dot"></span>
+                      ${facility.status === 'active' ? '운영중' : '휴업'}
+                    </span>
+                  </div>
+                </div>
+                <div class="item-meta">
+                  <span class="location">📍 ${facility.location.address}</span>
+                  <span class="capacity">👥 최대 ${facility.capacity}명 (${spotsStatus})</span>
+                  <span class="rating">⭐ ${facility.rating} (${facility.reviewCount})</span>
+                </div>
+                <div class="item-description">
+                  <p>${facility.description}</p>
+                </div>
+                <div class="item-facilities">
+                  ${facility.facilities.slice(0, 4).map(f => `<span class="tag">${f}</span>`).join('')}
+                  ${facility.facilities.length > 4 ? `<span class="tag-more">+${facility.facilities.length - 4}</span>` : ''}
+                </div>
+              </div>
+              <div class="item-actions">
+                <div class="price-info">
+                  <div class="price-label">시간당</div>
+                  <div class="price-value">${facility.fees.hourly.toLocaleString()}원</div>
+                </div>
+                <button class="btn btn-primary" onclick="location.href='/facilities/detail.html?id=${facility.id}'">
+                  자세히 보기
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // 기본 그리드 뷰
+        return `
+          <div class="list-card facility-card" data-id="${facility.id}">
+            <div class="card-image">
+              <div class="card-image-placeholder">
+                <div class="card-placeholder-icon">${facility.category === '체육관' ? '🏢' : facility.category === '스포츠센터' ? '🏃‍♀️' : facility.category === '수영장' ? '🏊‍♀️' : facility.category === '테니스장' ? '🎾' : '⚽'}</div>
+                <div class="card-placeholder-text">${facility.name}</div>
+                <div class="card-placeholder-sub">${facility.category}</div>
+              </div>
+              <div class="card-overlay">
+                <div class="overlay-badges">
+                  <span class="badge">${facility.category}</span>
+                  ${facility.status !== 'active' ? '<span class="badge badge-error">휴업</span>' : ''}
+                </div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <h3 class="card-title">${facility.name}</h3>
+                <span class="capacity-status capacity-${statusColor}">${spotsStatus}</span>
+              </div>
+              <div class="card-location">📍 ${facility.location.district}</div>
+              <div class="card-facilities">
+                ${facility.facilities.slice(0, 3).map(f => `<span class="facility-tag">${f}</span>`).join('')}
+                ${facility.facilities.length > 3 ? `<span class="facility-more">+${facility.facilities.length - 3}</span>` : ''}
+              </div>
+              <div class="card-amenities">
+                ${facility.amenities.slice(0, 3).map(a => `<span class="amenity-icon" title="${a}">🏢</span>`).join('')}
+              </div>
+              <div class="card-footer">
+                <div class="card-rating">
+                  <span class="rating-stars">${'★'.repeat(Math.round(facility.rating))}</span>
+                  <span class="rating-text">${facility.rating} (${facility.reviewCount})</span>
+                </div>
+                <div class="card-price">
+                  <span class="price-value">${facility.fees.hourly.toLocaleString()}</span>
+                  <span class="price-unit">원/시간</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 가격 범위 필터 적용
+      applyFilters(facility, filters) {
+        const baseResult = super.applyFilters(facility, filters);
+        if (!baseResult) return false;
+
+        // 가격 범위 필터
+        if (filters.priceRange) {
+          const hourlyPrice = facility.fees.hourly;
+          switch (filters.priceRange) {
+            case 'low':
+              if (hourlyPrice > 100000) return false;
+              break;
+            case 'medium':
+              if (hourlyPrice <= 100000 || hourlyPrice > 500000) return false;
+              break;
+            case 'high':
+              if (hourlyPrice <= 500000) return false;
+              break;
+          }
+        }
+
+        return true;
+      }
+    }
+
+    // 페이지 초기화
+    new FacilitiesPage();
+  </script>
+
+  <style>
+    /* 체육시설 페이지 전용 스타일 */
+    .filters-section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-group {
+      grid-column: span 2;
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding-right: 2.5rem;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.25rem;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .search-clear:hover {
+      background: var(--line);
+      color: var(--ink);
+    }
+
+    .view-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .results-info {
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .view-btn {
+      padding: 0.5rem;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .view-btn:hover {
+      background: var(--card-hover);
+      color: var(--ink);
+    }
+
+    .view-btn.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+
+    /* 그리드 뷰 */
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    /* 리스트 뷰 */
+    .facilities-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .facility-item {
+      display: flex;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .facility-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px var(--shadow);
+      border-color: var(--brand);
+    }
+
+    .item-image {
+      flex-shrink: 0;
+      width: 200px;
+      height: 150px;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .item-content {
+      flex: 1;
+      padding: 1.5rem;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .item-title {
+      font-size: 1.25rem;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .item-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .item-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .item-description {
+      margin-bottom: 1rem;
+    }
+
+    .item-description p {
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .item-facilities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .item-actions {
+      flex-shrink: 0;
+      padding: 1.5rem;
+      border-left: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-width: 150px;
+    }
+
+    .price-info {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .price-label {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .price-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    /* 카드 개선 */
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+    }
+
+    .overlay-badges {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .capacity-status {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+    }
+
+    .capacity-good {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--good);
+    }
+
+    .capacity-warn {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warn);
+    }
+
+    .capacity-bad {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--bad);
+    }
+
+    .card-location {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-facilities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .facility-tag {
+      font-size: 0.75rem;
+      background: var(--bg-secondary);
+      color: var(--ink-secondary);
+      padding: 0.25rem 0.625rem;
+      border-radius: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      transition: all 0.2s ease;
+    }
+
+    .facility-card:hover .facility-tag {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--brand);
+      border-color: var(--brand);
+    }
+
+    .facility-more {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .card-amenities {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .amenity-icon {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .rating-stars {
+      color: #fbbf24;
+      font-size: 0.875rem;
+    }
+
+    .rating-text {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .card-price {
+      text-align: right;
+    }
+
+    .price-value {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .price-unit {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* 카드 이미지 플레이스홀더 */
+    .card-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--card) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-secondary);
+      border: 2px dashed var(--line);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .facility-card:hover .card-image-placeholder {
+      background: var(--gradient);
+      color: white;
+      border-color: transparent;
+      border-style: solid;
+    }
+
+    .card-placeholder-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .card-placeholder-text {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      text-align: center;
+      line-height: 1.3;
+      max-width: 80%;
+    }
+
+    .card-placeholder-sub {
+      font-size: 0.875rem;
+      opacity: 0.7;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .facility-card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .overlay-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+      .search-group {
+        grid-column: span 1;
+      }
+      
+      .filters {
+        grid-template-columns: 1fr;
+      }
+      
+      .facilities-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .facility-item {
+        flex-direction: column;
+      }
+      
+      .item-image {
+        width: 100%;
+        height: 200px;
+      }
+      
+      .item-actions {
+        border-left: none;
+        border-top: 1px solid var(--line);
+        flex-direction: row;
+        justify-content: space-between;
+        min-width: auto;
+      }
+      
+      .view-controls {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+    }
+  </style>
+</body>
+</html>
