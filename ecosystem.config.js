@@ -1,9 +1,9 @@
 module.exports = {
   apps: [
     {
-      name: 'all4fit-main',
-      script: 'nginx',
-      args: '-g "daemon off;"',
+      name: 'all4fit-monitor',
+      script: 'echo',
+      args: 'Monitoring all4fit services',
       cwd: '/var/www/all4fit',
       instances: 1,
       exec_mode: 'fork',
@@ -34,35 +34,9 @@ module.exports = {
       min_uptime: '10s',
       max_restarts: 10,
       
-      // 클러스터 모드 설정 (Nginx는 단일 인스턴스)
+      // 클러스터 모드 설정
       instances: 1,
       exec_mode: 'fork'
-    },
-    {
-      name: 'all4fit-dev',
-      script: 'nginx',
-      args: '-g "daemon off;"',
-      cwd: '/var/www/all4fit-dev',
-      instances: 1,
-      exec_mode: 'fork',
-      env: {
-        NODE_ENV: 'development',
-        PORT: 80
-      },
-      // 자동 재시작 설정
-      autorestart: true,
-      watch: false,
-      max_memory_restart: '512M',
-      
-      // 로그 설정
-      log_file: '/var/log/all4fit-dev/combined.log',
-      out_file: '/var/log/all4fit-dev/out.log',
-      error_file: '/var/log/all4fit-dev/error.log',
-      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
-      
-      // 모니터링 설정
-      min_uptime: '10s',
-      max_restarts: 10
     }
   ],
 

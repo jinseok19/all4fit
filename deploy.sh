@@ -106,7 +106,9 @@ sudo ufw --force enable
 # 11. PM2 설정
 log "PM2 무중단 서비스 설정 중..."
 sudo mkdir -p /var/log/all4fit
+sudo mkdir -p /var/log/all4fit-dev
 sudo chown -R $USER:$USER /var/log/all4fit
+sudo chown -R $USER:$USER /var/log/all4fit-dev
 
 # PM2 설정 파일 복사
 sudo cp ecosystem.config.js $WEB_ROOT/
