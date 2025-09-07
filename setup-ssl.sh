@@ -41,11 +41,7 @@ sudo certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN -d prod.$DOMAIN -d 
 
 # Nginx 설정 파일 업데이트
 echo -e "${YELLOW}⚙️  Nginx 설정을 업데이트합니다...${NC}"
-sudo cp nginx.conf /etc/nginx/sites-available/all4fit
-
-# HTTP to HTTPS 리다이렉트 설정 추가
-echo -e "${YELLOW}🔄 HTTP to HTTPS 리다이렉트를 설정합니다...${NC}"
-sudo sed -i '/server {/a\    # HTTP to HTTPS redirect\n    return 301 https://$server_name$request_uri;' /etc/nginx/sites-available/all4fit
+sudo cp nginx-ip-redirect.conf /etc/nginx/sites-available/all4fit
 
 # 사이트 활성화
 sudo ln -sf /etc/nginx/sites-available/all4fit /etc/nginx/sites-enabled/
