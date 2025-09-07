@@ -109,7 +109,8 @@ sudo mkdir -p /var/log/all4fit
 sudo chown -R $USER:$USER /var/log/all4fit
 
 # PM2 설정 파일 복사
-cp ecosystem.config.js $WEB_ROOT/
+sudo cp ecosystem.config.js $WEB_ROOT/
+sudo chown www-data:www-data $WEB_ROOT/ecosystem.config.js
 cd $WEB_ROOT
 pm2 start ecosystem.config.js --env production
 pm2 startup
