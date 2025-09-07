@@ -77,7 +77,13 @@ sudo rm -f /etc/nginx/sites-enabled/default
 
 # 8. Nginx 설정 테스트
 log "Nginx 설정 테스트 중..."
-sudo nginx -t
+if sudo nginx -t; then
+    echo -e "${GREEN}✅ Nginx 설정이 올바릅니다${NC}"
+else
+    echo -e "${RED}❌ Nginx 설정에 오류가 있습니다${NC}"
+    echo -e "${YELLOW}설정 파일을 확인하고 다시 시도하세요${NC}"
+    exit 1
+fi
 
 # 9. Nginx 재시작
 log "Nginx 재시작 중..."
