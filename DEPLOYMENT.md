@@ -51,6 +51,11 @@ chmod +x *.sh
 ./deploy-dev.sh
 ```
 
+### 7단계: PM2 무중단 서비스 설정 (선택사항)
+```bash
+./setup-pm2.sh
+```
+
 ## 📁 배포 파일 구조
 
 ```
@@ -64,7 +69,11 @@ all4fit/
 ├── videos/                   # 비디오 파일
 ├── nginx.conf               # Nginx 설정
 ├── deploy.sh                # 배포 스크립트
+├── deploy-dev.sh            # 개발 환경 배포 스크립트
 ├── setup-ssl.sh             # SSL 설정 스크립트
+├── setup-pm2.sh             # PM2 설정 스크립트
+├── pm2-commands.sh          # PM2 관리 명령어
+├── ecosystem.config.js      # PM2 설정 파일
 ├── backup.sh                # 백업 스크립트
 ├── monitor.sh               # 모니터링 스크립트
 ├── all4fit.service          # 시스템 서비스
@@ -94,6 +103,25 @@ all4fit/
 - 시스템 상태 확인
 - 웹사이트 응답 확인
 - 로그 확인
+
+### `setup-pm2.sh` - PM2 무중단 서비스 설정
+- Node.js 및 PM2 설치
+- PM2 서비스 등록
+- 자동 시작 설정
+- 모니터링 설정
+
+### `pm2-commands.sh` - PM2 관리 명령어
+- 서비스 상태 확인
+- 서비스 시작/중지/재시작
+- 무중단 재시작 (reload)
+- 로그 확인
+- 모니터링 대시보드
+
+### `ecosystem.config.js` - PM2 설정 파일
+- 프로덕션/개발 환경 설정
+- 자동 재시작 설정
+- 로그 관리
+- 메모리 제한 설정
 
 ## 🌐 접속 확인
 
@@ -137,6 +165,24 @@ tail -f /var/log/all4fit/deploy.log
 ### 백업 실행
 ```bash
 ./backup.sh
+```
+
+### PM2 관리
+```bash
+# PM2 상태 확인
+pm2 status
+
+# PM2 로그 확인
+pm2 logs
+
+# 무중단 재시작
+pm2 reload all
+
+# PM2 모니터링 대시보드
+pm2 monit
+
+# PM2 관리 명령어 메뉴
+./pm2-commands.sh
 ```
 
 ## 🔄 업데이트 배포

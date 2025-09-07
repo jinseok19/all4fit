@@ -121,7 +121,7 @@ else
     exit 1
 fi
 
-# 12. 성능 최적화
+# 14. 성능 최적화
 log "성능 최적화 설정 중..."
 
 # Nginx worker 프로세스 수 조정
@@ -132,12 +132,12 @@ sudo sed -i "s/worker_processes auto;/worker_processes $CPU_CORES;/" /etc/nginx/
 echo "* soft nofile 65535" | sudo tee -a /etc/security/limits.conf
 echo "* hard nofile 65535" | sudo tee -a /etc/security/limits.conf
 
-# 13. 모니터링 설정
+# 15. 모니터링 설정
 log "모니터링 설정 중..."
 sudo mkdir -p /var/log/nginx
 sudo chown www-data:www-data /var/log/nginx
 
-# 14. 자동 백업 설정
+# 16. 자동 백업 설정
 log "자동 백업 설정 중..."
 (crontab -l 2>/dev/null; echo "0 2 * * * /bin/bash $PWD/backup.sh") | crontab -
 

@@ -10,12 +10,20 @@
     "backup": "./backup.sh",
     "monitor": "./monitor.sh",
     "ssl": "./setup-ssl.sh",
+    "pm2:setup": "./setup-pm2.sh",
+    "pm2:commands": "./pm2-commands.sh",
     "status": "systemctl status nginx",
     "restart": "sudo systemctl restart nginx",
     "logs": "tail -f /var/log/nginx/access.log",
     "logs:prod": "tail -f /var/log/nginx/all4fit_prod_access.log",
     "logs:dev": "tail -f /var/log/nginx/all4fit_dev_access.log",
-    "error-logs": "tail -f /var/log/nginx/error.log"
+    "error-logs": "tail -f /var/log/nginx/error.log",
+    "pm2:status": "pm2 status",
+    "pm2:logs": "pm2 logs",
+    "pm2:restart": "pm2 restart all",
+    "pm2:reload": "pm2 reload all",
+    "pm2:stop": "pm2 stop all",
+    "pm2:monit": "pm2 monit"
   },
   "keywords": [
     "fitness",
