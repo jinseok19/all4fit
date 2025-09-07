@@ -5,8 +5,8 @@ module.exports = {
       script: 'serve',
       args: '-s /var/www/all4fit -l 3000',
       cwd: '/var/www/all4fit',
-      instances: 2,
-      exec_mode: 'cluster',
+      instances: 1,
+      exec_mode: 'fork',
       env: {
         NODE_ENV: 'production',
         PORT: 3000
@@ -28,12 +28,7 @@ module.exports = {
       
       // 모니터링 설정
       min_uptime: '10s',
-      max_restarts: 10,
-      
-      // 무중단 배포 설정
-      kill_timeout: 5000,
-      wait_ready: true,
-      listen_timeout: 10000
+      max_restarts: 10
     },
     {
       name: 'all4fit-dev',

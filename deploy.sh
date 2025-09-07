@@ -108,25 +108,8 @@ sudo ufw allow 'Nginx Full'
 sudo ufw allow ssh
 sudo ufw --force enable
 
-# 11. PM2 설정
-log "PM2 무중단 서비스 설정 중..."
-sudo mkdir -p /var/log/all4fit
-sudo mkdir -p /var/log/all4fit-dev
-sudo chown -R $USER:$USER /var/log/all4fit
-sudo chown -R $USER:$USER /var/log/all4fit-dev
-
-# PM2 정리 및 재시작
-log "PM2 서비스 정리 중..."
-pm2 delete all 2>/dev/null || true
-pm2 kill 2>/dev/null || true
-
-# PM2 설정 파일 복사
-sudo cp ecosystem.config.js $WEB_ROOT/
-sudo chown www-data:www-data $WEB_ROOT/ecosystem.config.js
-cd $WEB_ROOT
-pm2 start ecosystem.config.js --env production
-pm2 startup
-pm2 save
+# 11. 기본 서버 설정 완료
+log "기본 서버 설정이 완료되었습니다."
 
 # 12. 서비스 상태 확인
 log "서비스 상태 확인 중..."
@@ -147,7 +130,7 @@ else
     exit 1
 fi
 
-# 14. 성능 최적화
+# 13. 성능 최적화
 log "성능 최적화 설정 중..."
 
 # Nginx worker 프로세스 수 조정
@@ -158,12 +141,12 @@ sudo sed -i "s/worker_processes auto;/worker_processes $CPU_CORES;/" /etc/nginx/
 echo "* soft nofile 65535" | sudo tee -a /etc/security/limits.conf
 echo "* hard nofile 65535" | sudo tee -a /etc/security/limits.conf
 
-# 15. 모니터링 설정
+# 14. 모니터링 설정
 log "모니터링 설정 중..."
 sudo mkdir -p /var/log/nginx
 sudo chown www-data:www-data /var/log/nginx
 
-# 16. 자동 백업 설정
+# 15. 자동 백업 설정
 log "자동 백업 설정 중..."
 (crontab -l 2>/dev/null; echo "0 2 * * * /bin/bash $PWD/backup.sh") | crontab -
 
