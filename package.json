@@ -23,7 +23,8 @@
     "pm2:restart": "pm2 restart all",
     "pm2:reload": "pm2 reload all",
     "pm2:stop": "pm2 stop all",
-    "pm2:monit": "pm2 monit"
+    "pm2:monit": "pm2 monit",
+    "deploy:zero": "./deploy-zero-downtime.sh"
   },
   "keywords": [
     "fitness",

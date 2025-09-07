@@ -50,6 +50,11 @@ if ! command -v pm2 &> /dev/null; then
     sudo npm install -g pm2
 fi
 
+# serve 패키지 설치 (정적 파일 서빙용)
+if ! command -v serve &> /dev/null; then
+    sudo npm install -g serve
+fi
+
 # 4. 웹 디렉토리 생성
 log "웹 디렉토리 설정 중..."
 sudo mkdir -p $WEB_ROOT
@@ -109,6 +114,11 @@ sudo mkdir -p /var/log/all4fit
 sudo mkdir -p /var/log/all4fit-dev
 sudo chown -R $USER:$USER /var/log/all4fit
 sudo chown -R $USER:$USER /var/log/all4fit-dev
+
+# PM2 정리 및 재시작
+log "PM2 서비스 정리 중..."
+pm2 delete all 2>/dev/null || true
+pm2 kill 2>/dev/null || true
 
 # PM2 설정 파일 복사
 sudo cp ecosystem.config.js $WEB_ROOT/
