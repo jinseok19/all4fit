@@ -71,7 +71,14 @@ sudo chmod -R 755 $WEB_ROOT
 
 # 7. Nginx 설정
 log "Nginx 설정 중..."
-sudo cp nginx.conf /etc/nginx/sites-available/$PROJECT_NAME
+# SSL 인증서가 있는지 확인
+if [ -f "/etc/letsencrypt/live/all4fit.co.kr/fullchain.pem" ]; then
+    echo -e "${GREEN}✅ SSL 인증서가 발견되었습니다. HTTPS 설정을 사용합니다.${NC}"
+    sudo cp nginx.conf /etc/nginx/sites-available/$PROJECT_NAME
+else
+    echo -e "${YELLOW}⚠️  SSL 인증서가 없습니다. HTTP 설정을 사용합니다.${NC}"
+    sudo cp nginx-http.conf /etc/nginx/sites-available/$PROJECT_NAME
+fi
 sudo ln -sf /etc/nginx/sites-available/$PROJECT_NAME /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 

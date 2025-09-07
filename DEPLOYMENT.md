@@ -36,12 +36,12 @@ scp -i your-key.pem -r ./all4fit ubuntu@your-ec2-public-ip:/home/ubuntu/
 chmod +x *.sh
 ```
 
-### 4단계: 자동 배포 실행
+### 4단계: 자동 배포 실행 (HTTP)
 ```bash
 ./deploy.sh
 ```
 
-### 5단계: SSL 인증서 설정
+### 5단계: SSL 인증서 설정 (HTTPS)
 ```bash
 ./setup-ssl.sh
 ```
@@ -125,14 +125,18 @@ all4fit/
 
 ## 🌐 접속 확인
 
-### HTTP 접속
+### HTTP 접속 (SSL 설정 전)
 ```
-http://3.38.85.149
+http://3.38.85.149              # IP로 직접 접속
+http://all4fit.co.kr            # 메인 사이트
+http://www.all4fit.co.kr        # www 서브도메인
+http://prod.all4fit.co.kr       # 프로덕션 서브도메인
+http://dev.all4fit.co.kr        # 개발 서브도메인
 ```
 
 ### HTTPS 접속 (SSL 설정 후)
 ```
-https://all4fit.co.kr          # 메인 사이트
+https://all4fit.co.kr           # 메인 사이트
 https://www.all4fit.co.kr       # www 서브도메인
 https://prod.all4fit.co.kr      # 프로덕션 서브도메인
 https://dev.all4fit.co.kr       # 개발 서브도메인
