@@ -1,0 +1,28 @@
+[Unit]
+Description=All4Fit Web Application
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/all4fit
+ExecStart=/usr/bin/nginx -g "daemon off;"
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+
+# 보안 설정
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/all4fit
+ReadWritePaths=/var/log/nginx
+
+# 리소스 제한
+LimitNOFILE=65535
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target

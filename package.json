@@ -1,0 +1,41 @@
+{
+  "name": "all4fit",
+  "version": "1.0.0",
+  "description": "모두의핏 - 체육시설 통합 플랫폼",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "deploy": "./deploy.sh",
+    "deploy:dev": "./deploy-dev.sh",
+    "backup": "./backup.sh",
+    "monitor": "./monitor.sh",
+    "ssl": "./setup-ssl.sh",
+    "status": "systemctl status nginx",
+    "restart": "sudo systemctl restart nginx",
+    "logs": "tail -f /var/log/nginx/access.log",
+    "logs:prod": "tail -f /var/log/nginx/all4fit_prod_access.log",
+    "logs:dev": "tail -f /var/log/nginx/all4fit_dev_access.log",
+    "error-logs": "tail -f /var/log/nginx/error.log"
+  },
+  "keywords": [
+    "fitness",
+    "sports",
+    "facility",
+    "korea",
+    "체육시설",
+    "운동"
+  ],
+  "author": "NEXUSCORE",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/all4fit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/all4fit/issues"
+  },
+  "homepage": "https://your-domain.com"
+}
