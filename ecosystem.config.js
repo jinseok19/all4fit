@@ -2,8 +2,10 @@ module.exports = {
   apps: [
     {
       name: 'all4fit-web',
-      script: 'serve',
-      args: '-s /var/www/all4fit -l 3000',
+      // pm2는 script를 cwd 기준 path로 해석하는 경우가 많아서(serve 바이너리 못찾음),
+      // /usr/bin/env를 통해 PATH에서 serve를 실행하도록 고정
+      script: '/usr/bin/env',
+      args: 'serve -s /var/www/all4fit -l 3000',
       cwd: '/var/www/all4fit',
       instances: 1,
       exec_mode: 'fork',
@@ -32,8 +34,8 @@ module.exports = {
     },
     {
       name: 'all4fit-dev',
-      script: 'serve',
-      args: '-s /var/www/all4fit-dev -l 3001',
+      script: '/usr/bin/env',
+      args: 'serve -s /var/www/all4fit-dev -l 3001',
       cwd: '/var/www/all4fit-dev',
       instances: 1,
       exec_mode: 'fork',
