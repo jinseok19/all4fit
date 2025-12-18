@@ -77,9 +77,21 @@ sudo chmod -R 755 $WEB_ROOT
 # 7. Nginx 설정
 log "Nginx 설정 중..."
 # SSL 인증서가 있는지 확인
-if [ -f "/etc/letsencrypt/live/all4fit.co.kr/fullchain.pem" ]; then
-    echo -e "${GREEN}✅ SSL 인증서가 발견되었습니다. HTTPS 설정을 사용합니다.${NC}"
-    sudo cp nginx.conf /etc/nginx/sites-available/$PROJECT_NAME
+SSL_CERT="/etc/letsencrypt/live/all4fit.co.kr/fullchain.pem"
+
+if [ -f "$SSL_CERT" ]; then
+    # 만료된 인증서 파일도 "존재"는 하므로, 배포 시 갱신을 먼저 시도하고 유효성 체크
+    log "SSL 인증서가 발견되었습니다. 갱신을 시도합니다..."
+    sudo certbot renew --quiet || true
+
+    if command -v openssl >/dev/null 2>&1 && openssl x509 -in "$SSL_CERT" -noout -checkend 86400 >/dev/null 2>&1; then
+        echo -e "${GREEN}✅ 유효한 SSL 인증서입니다. HTTPS 설정을 사용합니다.${NC}"
+        sudo cp nginx.conf /etc/nginx/sites-available/$PROJECT_NAME
+    else
+        echo -e "${YELLOW}⚠️  SSL 인증서가 만료/무효입니다. 임시로 HTTP 설정을 사용합니다.${NC}"
+        echo -e "${YELLOW}   (서버에서 sudo ./setup-ssl.sh 실행 후 다시 배포하세요)${NC}"
+        sudo cp nginx-http.conf /etc/nginx/sites-available/$PROJECT_NAME
+    fi
 else
     echo -e "${YELLOW}⚠️  SSL 인증서가 없습니다. HTTP 설정을 사용합니다.${NC}"
     sudo cp nginx-http.conf /etc/nginx/sites-available/$PROJECT_NAME

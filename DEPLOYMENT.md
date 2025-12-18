@@ -215,6 +215,19 @@ sudo ufw allow ssh
 sudo certbot renew --dry-run
 ```
 
+#### 자동 갱신(권장) 확인
+```bash
+systemctl status certbot.timer
+systemctl list-timers | grep certbot
+```
+
+#### 만료/갱신 실패 시(즉시 복구)
+```bash
+sudo ./setup-ssl.sh
+sudo certbot renew --force-renewal
+sudo systemctl reload nginx
+```
+
 ## 🚨 문제 해결
 
 ### Nginx 시작 실패

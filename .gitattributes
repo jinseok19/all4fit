@@ -1,0 +1,17 @@
+* text=auto
+
+# bash scripts must stay LF (avoid ^M on Linux servers)
+*.sh text eol=lf
+*.bash text eol=lf
+
+# common config files
+*.conf text eol=lf
+*.service text eol=lf
+
+# web assets
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
