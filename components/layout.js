@@ -1,4 +1,4 @@
-import { brand, nav, sitemap, adminNav } from "./site-config.js";
+import { brand, nav, sitemap } from "./site-config.js";
 
 // 테마 토글 함수
 function initThemeToggle() {
@@ -18,38 +18,6 @@ function initThemeToggle() {
     localStorage.setItem("allfit_theme", newTheme);
     toggle.setAttribute("aria-pressed", newTheme === "light");
   });
-}
-
-// 로그인 상태 확인 및 업데이트
-function updateAuthState() {
-  const token = localStorage.getItem("allfit_token");
-  const loginBtn = document.getElementById("loginBtn");
-  const adminLink = document.querySelector('.admin-link');
-  
-  if (token && loginBtn) {
-    loginBtn.textContent = "로그아웃";
-    loginBtn.href = "#";
-    loginBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      localStorage.removeItem("allfit_token");
-      window.location.href = "/";
-    });
-  }
-
-  // 관리자 링크 클릭 시 이벤트 전파 중단
-  if (adminLink) {
-    adminLink.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  }
-
-  // 로그인 버튼 클릭 시 이벤트 전파 중단
-  if (loginBtn) {
-    loginBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  }
 }
 
 // 전역 검색 초기화
@@ -125,8 +93,6 @@ function initMobileMenu() {
 }
 
 export function mountHeader(el, { activePath } = {}) {
-  const token = localStorage.getItem("allfit_token");
-  
   el.innerHTML = `
     <div class="header">
       <div class="header-content">
@@ -170,23 +136,11 @@ export function mountHeader(el, { activePath } = {}) {
             </svg>
           </button>
           
-          ${token ? `
-            <a href="/admin/" class="admin-link ${activePath?.startsWith("/admin/") ? "active" : ""}" title="관리자 대시보드">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.16.21 2.76.21 3.91 0C20.16 27 24 22.55 24 17V7l-10-5z"/>
-                <path d="M9 12l2 2 4-4"/>
-              </svg>
-              <span class="admin-text">관리자</span>
-            </a>
-          ` : ""}
-          
           <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-expanded="false" aria-label="메뉴 열기">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
           </button>
-          
-          <a class="btn btn-primary" href="/login.html" id="loginBtn">로그인</a>
         </div>
       </div>
     </div>
@@ -195,7 +149,6 @@ export function mountHeader(el, { activePath } = {}) {
   // 초기화 함수들 실행
   requestAnimationFrame(() => {
     initThemeToggle();
-    updateAuthState();
     initGlobalSearch();
     initMobileMenu();
   });

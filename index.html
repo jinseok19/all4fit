@@ -99,7 +99,6 @@
             </p>
             <div class="hero-actions">
               <a href="/facilities/" class="btn btn-primary btn-lg">시설 둘러보기</a>
-              <a href="/programs/" class="btn btn-outline btn-lg">프로그램 보기</a>
             </div>
           </div>
           <div class="hero-image">
@@ -146,10 +145,6 @@
           <div class="stat-item">
             <div class="stat-number" data-count="50">0</div>
             <div class="stat-label">체육시설</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="200">0</div>
-            <div class="stat-label">운동프로그램</div>
           </div>
           <div class="stat-item">
             <div class="stat-number" data-count="150">0</div>
@@ -268,21 +263,6 @@
       </div>
     </section>
 
-    <!-- Featured Programs Section -->
-    <section class="featured-programs-section section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">추천 프로그램</h2>
-          <p class="section-description">전문 지도자와 함께하는 다양한 운동 프로그램</p>
-          <a href="/programs/" class="section-link">전체보기 →</a>
-        </div>
-        
-        <div class="programs-grid" id="featuredPrograms">
-          <!-- 동적으로 로드됩니다 -->
-        </div>
-      </div>
-    </section>
-
     <!-- Top Coaches Section -->
     <section class="top-coaches-section section">
       <div class="container">
@@ -294,50 +274,6 @@
         
         <div class="coaches-grid" id="topCoaches">
           <!-- 동적으로 로드됩니다 -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Voucher Info Section -->
-    <section class="voucher-section section">
-      <div class="container">
-        <div class="voucher-card">
-          <div class="voucher-content">
-            <h2 class="voucher-title">체육 바우처로 더 저렴하게!</h2>
-            <p class="voucher-description">
-              정부 및 지자체에서 제공하는 체육 바우처를 사용하면<br>
-              더욱 저렴하게 다양한 프로그램을 이용하실 수 있습니다.
-            </p>
-            <div class="voucher-features">
-              <div class="voucher-feature">
-                <span class="voucher-icon">🎫</span>
-                <span>스포츠강좌이용권</span>
-              </div>
-              <div class="voucher-feature">
-                <span class="voucher-icon">👥</span>
-                <span>저소득층 지원</span>
-              </div>
-              <div class="voucher-feature">
-                <span class="voucher-icon">♿</span>
-                <span>장애인 체육지원</span>
-              </div>
-            </div>
-            <div class="voucher-buttons">
-              <a href="#application" class="btn btn-primary voucher-application-btn">신청 방법 보기</a>
-              <a href="https://svoucher.kspo.or.kr" target="_blank" class="btn voucher-official-btn">공식 사이트 →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 스크롤 인디케이터 -->
-      <div class="scroll-indicator" onclick="scrollToNext()">
-        <div class="scroll-text">스크롤하여 더 보기</div>
-        <div class="scroll-arrow">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 13l3 3 3-3"/>
-            <path d="M7 6l3 3 3-3"/>
-          </svg>
         </div>
       </div>
     </section>
@@ -377,7 +313,6 @@
 
       async init() {
         await this.loadPopularFacilities();
-        await this.loadFeaturedPrograms();
         await this.loadTopCoaches();
         await this.loadLatestNews();
         this.initCountAnimation();
@@ -417,46 +352,6 @@
           `).join('');
         } catch (error) {
           console.error('Failed to load facilities:', error);
-        }
-      }
-
-      async loadFeaturedPrograms() {
-        try {
-          const programs = await store.getData('programs');
-          const featured = programs
-            .filter(p => p.status === 'active')
-            .sort((a, b) => b.rating - a.rating)
-            .slice(0, 4);
-          
-          document.getElementById('featuredPrograms').innerHTML = featured.map(program => `
-            <div class="program-card card" onclick="location.href='/programs/detail.html?id=${program.id}'">
-              <div class="card-image">
-                <div class="card-image-placeholder">
-                  <div class="card-placeholder-icon">${program.category === '수영' ? '🏊‍♀️' : program.category === '요가' ? '🧘‍♀️' : program.category === '테니스' ? '🎾' : program.category === '축구' ? '⚽' : program.category === '헬스' ? '💪' : '🏃‍♂️'}</div>
-                  <div class="card-placeholder-text">${program.title}</div>
-                  <div class="card-placeholder-sub">${program.category}</div>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="card-header">
-                  <h3 class="card-title">${program.title}</h3>
-                  <span class="badge">${program.category}</span>
-                </div>
-                <div class="card-meta">
-                  <span class="level level-${program.level}">${program.level === 'beginner' ? '초급' : program.level === 'intermediate' ? '중급' : '고급'}</span>
-                  <span class="duration">⏱️${program.duration}분</span>
-                  <span class="rating">⭐${program.rating}</span>
-                </div>
-                <p class="card-description">${program.description.substring(0, 100)}...</p>
-                <div class="card-footer">
-                  <span class="schedule">📅 ${program.schedule.days.join('·')} ${program.schedule.time}</span>
-                  <span class="price">${program.price.toLocaleString()}원</span>
-                </div>
-              </div>
-            </div>
-          `).join('');
-        } catch (error) {
-          console.error('Failed to load programs:', error);
         }
       }
 
@@ -962,7 +857,7 @@
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       background: var(--card);
       padding: 2rem;
@@ -1152,7 +1047,6 @@
     }
 
     .facilities-grid,
-    .programs-grid,
     .coaches-grid,
     .news-grid {
       display: grid;
@@ -1164,16 +1058,11 @@
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     }
 
-    .programs-grid {
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    }
-
     .news-grid {
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     }
 
     .facility-card,
-    .program-card,
     .coach-card {
       cursor: pointer;
       background: var(--card);
@@ -1185,7 +1074,6 @@
     }
 
     .facility-card:hover,
-    .program-card:hover,
     .coach-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -1400,264 +1288,6 @@
       border-top: 1px solid var(--line);
     }
 
-    .voucher-section {
-      background: var(--gradient);
-      color: white;
-      position: relative;
-    }
-
-    .voucher-card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 3rem;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .voucher-title {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: white;
-      font-weight: 800;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
-      letter-spacing: -0.02em;
-    }
-
-    .voucher-description {
-      font-size: 1.125rem;
-      margin-bottom: 2rem;
-      color: white;
-      line-height: 1.6;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      font-weight: 500;
-    }
-
-    .voucher-features {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .voucher-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      color: white;
-      font-size: 1rem;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-    }
-
-    .voucher-icon {
-      font-size: 1.5rem;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-    }
-
-    /* 다크 모드에서 바우처 섹션 가독성 개선 */
-    :root[data-theme="dark"] .voucher-section {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-    }
-
-    :root[data-theme="dark"] .voucher-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    /* 라이트 모드에서 바우처 섹션 가독성 개선 */
-    :root[data-theme="light"] .voucher-section {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0891b2 100%);
-    }
-
-    :root[data-theme="light"] .voucher-card {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    }
-
-    :root[data-theme="light"] .voucher-title {
-      color: white;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
-      font-weight: 900;
-    }
-
-    :root[data-theme="light"] .voucher-description {
-      color: white;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      font-weight: 600;
-    }
-
-    :root[data-theme="light"] .voucher-feature {
-      color: white;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      font-weight: 700;
-    }
-
-    :root[data-theme="light"] .voucher-icon {
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-    }
-
-    /* 바우처 섹션 버튼 컨테이너 */
-    .voucher-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-
-    /* 바우처 버튼 기본 스타일 */
-    .voucher-btn {
-      padding: 0.875rem 2rem !important;
-      border-radius: 8px !important;
-      font-weight: 700 !important;
-      font-size: 1rem !important;
-      text-decoration: none !important;
-      transition: all 0.3s ease !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      min-width: 160px !important;
-      text-align: center !important;
-      border: 2px solid transparent !important;
-      background: none !important;
-      color: white !important;
-    }
-
-    /* 주요 버튼 (신청 방법 보기) */
-    .voucher-btn-primary {
-      background: var(--brand) !important;
-      color: white !important;
-      border: 2px solid var(--brand) !important;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2) !important;
-    }
-
-    .voucher-btn-primary:hover {
-      background: var(--accent) !important;
-      border-color: var(--accent) !important;
-      transform: translateY(-1px) !important;
-      box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3) !important;
-      color: white !important;
-    }
-
-    /* 보조 버튼 (자세히 보기) */
-    .voucher-btn-secondary {
-      background: rgba(255, 255, 255, 0.2) !important;
-      color: white !important;
-      border: 2px solid rgba(255, 255, 255, 0.4) !important;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-      backdrop-filter: blur(10px) !important;
-    }
-
-    .voucher-btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.3) !important;
-      border-color: rgba(255, 255, 255, 0.6) !important;
-      transform: translateY(-2px) !important;
-      color: white !important;
-    }
-
-    /* 다크 모드에서 버튼 스타일 */
-    :root[data-theme="dark"] .voucher-btn-primary {
-      background: var(--brand) !important;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3) !important;
-    }
-
-    :root[data-theme="dark"] .voucher-btn-secondary {
-      background: rgba(255, 255, 255, 0.15) !important;
-      border-color: rgba(255, 255, 255, 0.3) !important;
-    }
-
-    /* 라이트 모드에서 버튼 스타일 */
-    :root[data-theme="light"] .voucher-btn-primary {
-      background: var(--brand) !important;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2) !important;
-    }
-
-    :root[data-theme="light"] .voucher-btn-secondary {
-      background: rgba(255, 255, 255, 0.25) !important;
-      border-color: rgba(255, 255, 255, 0.5) !important;
-    }
-
-    /* 바우처 섹션 특별 버튼 스타일 */
-    .voucher-application-btn {
-      background: #ffffff !important;
-      color: #1f2937 !important;
-      border: 2px solid #ffffff !important;
-      font-weight: 800 !important;
-      text-shadow: none !important;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
-    }
-
-    .voucher-application-btn:hover {
-      background: #f9fafb !important;
-      color: #111827 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
-    }
-
-    .voucher-official-btn {
-      background: transparent !important;
-      color: #ffffff !important;
-      border: 2px solid #ffffff !important;
-      font-weight: 800 !important;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
-      backdrop-filter: blur(10px) !important;
-    }
-
-    .voucher-official-btn:hover {
-      background: rgba(255, 255, 255, 0.1) !important;
-      color: #ffffff !important;
-      transform: translateY(-2px) !important;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9) !important;
-    }
-
-    /* 다크 모드에서 바우처 버튼 */
-    :root[data-theme="dark"] .voucher-application-btn {
-      background: #ffffff !important;
-      color: #1f2937 !important;
-    }
-
-    :root[data-theme="dark"] .voucher-official-btn {
-      background: transparent !important;
-      color: #ffffff !important;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9) !important;
-    }
-
-    /* 라이트 모드에서 바우처 버튼 */
-    :root[data-theme="light"] .voucher-application-btn {
-      background: #ffffff !important;
-      color: #1f2937 !important;
-    }
-
-    :root[data-theme="light"] .voucher-official-btn {
-      background: transparent !important;
-      color: #ffffff !important;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
-    }
-
-    /* 반응형 디자인 */
-    @media (max-width: 768px) {
-      .voucher-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .voucher-btn {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-
     .news-card .news-meta {
       display: flex;
       justify-content: space-between;
@@ -1736,8 +1366,8 @@
       }
       
       .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
         padding: 1.5rem;
         margin-top: 2rem;
       }
@@ -1783,9 +1413,18 @@
       }
 
       .hero-stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
         padding: 1rem;
+        font-size: 0.875rem;
+      }
+      
+      .stat-number {
+        font-size: 2rem !important;
+      }
+      
+      .stat-label {
+        font-size: 0.75rem !important;
       }
 
       .hero-actions {
