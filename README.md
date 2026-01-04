@@ -32,7 +32,7 @@
 ├─ manifest.json             # PWA 매니페스트
 ├─ robots.txt               # SEO 로봇 설정
 ├─ sitemap.xml              # 사이트맵
-├─ .htaccess               # 서버 설정
+├─ package.json             # 프로젝트 설정
 ├─ /facilities/            # 체육시설
 │  ├─ index.html          # 시설 목록
 │  └─ detail.html         # 시설 상세
@@ -49,7 +49,24 @@
 ├─ /data/               # 정적 데이터
 ├─ /css/                # 스타일시트
 ├─ /js/                 # JavaScript 모듈
-└─ /images/             # 이미지 리소스
+├─ /images/             # 이미지 리소스
+├─ /scripts/            # 배포 및 관리 스크립트
+│  ├─ deploy.sh         # 메인 배포 스크립트
+│  ├─ setup-ssl.sh      # SSL 인증서 설정
+│  ├─ setup-pm2.sh      # PM2 설정
+│  ├─ backup.sh         # 백업 스크립트
+│  └─ monitor.sh        # 모니터링 스크립트
+├─ /config/             # 설정 파일
+│  ├─ nginx.conf        # Nginx 설정 (HTTPS)
+│  ├─ nginx-http.conf   # Nginx 설정 (HTTP)
+│  ├─ ecosystem.config.js # PM2 설정
+│  └─ env.example       # 환경 변수 예시
+├─ /docs/               # 문서
+│  ├─ DEPLOYMENT.md     # 배포 가이드
+│  ├─ SYSTEM_REQUIREMENTS.md # 시스템 요구사항
+│  └─ S/                # 과업지시서 등
+└─ /system/             # 시스템 서비스 파일
+   └─ all4fit.service   # systemd 서비스 파일
 ```
 
 ## 🚀 설치 및 실행

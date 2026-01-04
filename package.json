@@ -5,13 +5,13 @@
   "main": "index.html",
   "scripts": {
     "start": "python3 -m http.server 8000",
-    "deploy": "./deploy.sh",
-    "deploy:dev": "./deploy-dev.sh",
-    "backup": "./backup.sh",
-    "monitor": "./monitor.sh",
-    "ssl": "./setup-ssl.sh",
-    "pm2:setup": "./setup-pm2.sh",
-    "pm2:commands": "./pm2-commands.sh",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:dev": "./scripts/deploy-dev.sh",
+    "backup": "./scripts/backup.sh",
+    "monitor": "./scripts/monitor.sh",
+    "ssl": "./scripts/setup-ssl.sh",
+    "pm2:setup": "./scripts/setup-pm2.sh",
+    "pm2:commands": "./scripts/pm2-commands.sh",
     "status": "systemctl status nginx",
     "restart": "sudo systemctl restart nginx",
     "logs": "tail -f /var/log/nginx/access.log",
@@ -24,7 +24,7 @@
     "pm2:reload": "pm2 reload all",
     "pm2:stop": "pm2 stop all",
     "pm2:monit": "pm2 monit",
-    "deploy:zero": "./deploy-zero-downtime.sh"
+    "deploy:zero": "./scripts/deploy-zero-downtime.sh"
   },
   "keywords": [
     "fitness",
