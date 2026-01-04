@@ -15,7 +15,23 @@ NC='\033[0m' # No Color
 
 # 설정 변수
 PROJECT_NAME="all4fit"
-PROJECT_DIR="$HOME/$PROJECT_NAME"
+
+# 프로젝트 디렉토리 자동 감지 (스크립트 위치 기준)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# 프로젝트 디렉토리 확인 및 대체 경로 시도
+if [ ! -d "$PROJECT_DIR" ] || [ ! -d "$PROJECT_DIR/.git" ]; then
+    # 대체 경로들 시도
+    if [ -d "$HOME/$PROJECT_NAME" ] && [ -d "$HOME/$PROJECT_NAME/.git" ]; then
+        PROJECT_DIR="$HOME/$PROJECT_NAME"
+    elif [ -d "/home/ubuntu/$PROJECT_NAME" ] && [ -d "/home/ubuntu/$PROJECT_NAME/.git" ]; then
+        PROJECT_DIR="/home/ubuntu/$PROJECT_NAME"
+    elif [ -d "$(pwd)" ] && [ -d "$(pwd)/.git" ]; then
+        PROJECT_DIR="$(pwd)"
+    fi
+fi
+
 WEB_ROOT="/var/www/$PROJECT_NAME"
 BACKUP_DIR="/var/backups/$PROJECT_NAME"
 LOG_FILE="/var/log/$PROJECT_NAME/deploy.log"
@@ -37,10 +53,16 @@ log "배포 시작 (브랜치: $BRANCH)"
 
 # 프로젝트 디렉토리 확인
 if [ ! -d "$PROJECT_DIR" ]; then
-    echo -e "${RED}❌ 프로젝트 디렉토리를 찾을 수 없습니다: $PROJECT_DIR${NC}"
+    echo -e "${RED}❌ 프로젝트 디렉토리를 찾을 수 없습니다.${NC}"
+    echo -e "${YELLOW}시도한 경로:${NC}"
+    echo -e "  - $SCRIPT_DIR/.."
+    echo -e "  - $HOME/$PROJECT_NAME"
+    echo -e "  - /home/ubuntu/$PROJECT_NAME"
+    echo -e "  - $(pwd)"
     exit 1
 fi
 
+echo -e "${GREEN}✅ 프로젝트 디렉토리: $PROJECT_DIR${NC}"
 cd $PROJECT_DIR
 
 # Git 상태 확인
